@@ -13,6 +13,18 @@ namespace Homework3
             
             
             Console.WriteLine("Hello! How would you like to insert the temperature (Celcius or Fahrenheit)?");
+
+            while (true)
+            {
+                Convert();
+            }
+            
+            Console.ReadLine();
+            
+        }
+
+        public static void Convert()
+        {
             Console.WriteLine("Enter C to convert given temperature to Celsius. F to convert given temperature to Fahrenheit:");
             var input="";
             float result=0;
@@ -34,24 +46,31 @@ namespace Homework3
                 
             } while (!float.TryParse(temp, out tempFloat));
             
-           Console.Clear();
+            Console.Clear();
             
             if (input == "C")
             {
-                //- celsius = (fahrenheit - 32) * 5 / 9;
-                result = ((tempFloat - 32) * 5) / 9;
-                Console.WriteLine($"{temp} °F = {result} °C");
+                ConvertToCelsius(tempFloat, temp);
             }
             else if (input == "F")
             {
-                //- fahrenheit = (celsius * 9) / 5 + 32;
-                result = ((tempFloat * 9) / 5) + 32;
-                Console.WriteLine($"{temp} °C = {result} °F");
-            
+                ConvertToFahrenheit(tempFloat,temp);
             }
-
-            Console.ReadLine();
-            
         }
+
+        public static void ConvertToCelsius(float tempFloat, string temp)
+        {
+            //- celsius = (fahrenheit - 32) * 5 / 9;
+            var result = ((tempFloat - 32) * 5) / 9;
+            Console.WriteLine($"{temp} °F = {result} °C");
+        }
+
+        public static void ConvertToFahrenheit(float tempFloat, string temp)
+        {
+            //- fahrenheit = (celsius * 9) / 5 + 32;
+            var result = ((tempFloat * 9) / 5) + 32;
+            Console.WriteLine($"{temp} °C = {result} °F");
+        }
+        
     }
 }
